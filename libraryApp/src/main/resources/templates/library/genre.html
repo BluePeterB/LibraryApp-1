@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+<p th:text="${instruction}" style="font-size: 1.5em;">This gets replaced by controller</p>
+
+<form action="/library/newBook" method="get"> <!-- when user hits submit (or radio button/submit), a post request is sent to the
+                                            controller method which responds to the path library/book -->
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Genre Number</th>
+        <th>Genre Type</th>
+        <th th:if= "${newBook}">Select</th>
+    </tr>
+    </thead>
+    <tr th:each="genre : ${#lists.sort(genres, orderBy)}">
+    <!-- <tr th:each="genre : ${genres}">  -->
+        <td th:text="${genre.genreId}"></td>
+        <td th:text="${genre.genreType}" ></td>
+        <!-- Below BookIdX is the variable posted back on submit and its value is book.bookId -->
+        <td th:if= "${newBook}"><input type="radio" style="height:15px; width:50px;" name="genreIdX" th:value="${genre.genreId}"
+                                       class="form-control"  onchange="this.form.submit()"></td>
+    </tr>
+
+</table>
+</form>
+</body>
+</html>

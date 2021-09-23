@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<p th:text="${instruction}" style="font-size: 1.5em;">This gets replaced by controller</p>
+
+
+<form action="/library/addAuthor" method="post"> <!-- when user hits submit (or radio button/submit), a post request is sent to the
+                                            controller method which responds to the path library/addAuthor.
+                                            Ths is only for the newAuthor/newBook case.-->
+ <!--  -->
+  <div th:if= "${newBook}" class="form-group">
+    <label>First Name
+      <input type="text" name="firstName" class="form-control">
+    </label>
+    <label>Last Name
+      <input type="text"  name="lastName"  class="form-control">
+    </label>
+    <label>Birthday
+      <input type="date" name="birthday" class="form-control">
+    </label>
+    <label>Death Day
+      <input type="date"  name="deathDay"  class="form-control">
+    </label>
+    <!-- <input type="submit" value="Add Author" class="btn btn-success">  -->
+    <th><input type="submit"  name="authorIdX"  class="btn btn-warning" value= 0 style="color: transparent;">Enter Author</th>
+  </div>
+
+  <!--  -->
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Author Number</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Birthday</th>
+    <th>Deathday</th>
+    <th th:if= "${newBook}">Select</th>
+  </tr>
+  </thead>
+  <tr th:each="author : ${#lists.sort(authors, orderBy)}">
+  <!-- <tr th:each="author : ${authors}">  -->
+    <td th:text="${author.authorId}"></td>
+    <td th:text="${author.firstName}" ></td>
+    <td th:text="${author.lastName}"></td>
+    <td th:text="${author.getFormattedBirthday}"></td>
+   <!-- <td th:text="${author.deathday}"></td>  -->
+    <td th:text="${author.getFormattedDeathday}"></td>
+    <!-- Below authorIdX is the variable posted back on submit and its value is author.authorId -->
+    <td th:if= "${newBook}"><input type="radio" style="height:15px; width:50px;"
+                                   name="authorIdX" th:value="${author.authorId}"
+                                   class="form-control"  onchange="this.form.submit()"></td>
+  </tr>
+
+</table>
+</form>
+</body>
+</html>

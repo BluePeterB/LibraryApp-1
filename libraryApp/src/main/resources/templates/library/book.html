@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>  <!-- This formats the page Plus?-->
+<body class="container">
+
+
+<header th:replace="fragments :: header"></header>
+<nav>
+    <ul class="nav">
+        <li class="nav-item"><span class="nav-link" >Ordered By</span></li>
+        <li class="nav-item"><span class="nav-link" th:text="${orderedBy}"></span></li>
+        <!-- The nav links below call the Book Controller @ GetMapping book  -->
+        <!-- The white 'Order By Title' etc annotations are the blue words for user to click on. -->
+        <li class="nav-item"><a class="nav-link" href="/library/book?sort=title">Order By Title</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/book?sort=author">Order By Author</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/book?sort=isbn">Order By ISBN</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/book?sort=bookId">Order By Ref Number</a></li>
+    </ul>
+</nav>
+
+<p th:text="${instruction}" style="font-size: 1.5em;">This gets replaced by controller</p>
+
+<form action="/library/book" method="post"> <!-- when user hits submit (or radio button/submit), a post request is sent to the
+                                            controller method which responds to the path library/book -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Available</th>
+            <th>Genre</th>
+            <th>Ref Number.</th>
+            <th th:if= "${loan}">Select</th>
+        </tr>
+        </thead>
+
+        <tr th:each="book : ${#lists.sort(books, orderBy)}">
+            <td th:text="${book.bookId}"></td>
+            <td th:text="${book.title}" ></td>
+            <td th:text="${book.author.fullName}"></td>
+            <!--<td th:text=formatDecimal("${book.getIsbn}", 11, 0)></td>  -->
+             <td th:text="${book.getIsbn}"></td>
+            <td th:text="${book.getAvailability}"></td>
+            <td th:text="${book.genre.genreType}"></td>
+            <!-- Below BookIdX is the variable posted back on submit and its value is book.bookId -->
+            <td th:if= "${loan && book.available==0}"><input type="radio" style="height:15px; width:50px;" name="bookIdX" th:value="${book.bookId}"
+                                                              class="form-control"  onchange="this.form.submit()"></td>
+        </tr>
+            <!-- th:checked="${book.bookId == chosenBookId}" not required in above line, useful?? -->
+
+
+    </table>
+</form>
+</body>
+</html>

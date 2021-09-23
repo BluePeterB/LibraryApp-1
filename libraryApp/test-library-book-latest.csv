@@ -1,0 +1,37 @@
+book_id,available,isbn,title,author_author_id,genre_genre_id
+1,0,978149413,"A Midsummer's Night Dream",2,23
+2,0,988535196,"Romeo and Juliet",2,3
+3,1,451664226,"The Golden Compass",1,1
+4,0,160419390,"The Subtle Knife",1,1
+5,0,94387895,"The Amber Spyglass",1,1
+6,0,464069772,"The Alchemist",3,2
+7,0,335973357,"And Then There Were None",4,6
+8,0,990050329,"The Joy Luck Club",5,10
+10,0,156879860,"Sense and Sensibility",6,3
+11,0,951273178,"Northanger Abbey",6,3
+12,0,415886839,"Pride and Prejudice",6,3
+13,0,188534067,"Mansfield Park",6,3
+14,0,994896202,Emma,6,3
+15,0,28150097,Persuasion,6,3
+16,0,230962926,"Lady Susan",6,3
+17,0,280569946,"Wuthering Heights",7,3
+18,0,639239663,"The Handmaid's Tale",8,5
+19,0,826875490,"The Testaments",8,5
+20,1,283359358,"The Parable of the Sower",9,5
+21,1,495409887,"Little Women",10,23
+22,0,455128657,"Still Life",11,6
+23,0,832517012,"A Fatal Grace",11,6
+24,1,419285319,"The Cruelest Month",11,6
+25,0,656621400,"The Murder Stone",11,6
+26,0,144255852,"The Brutal Telling",11,6
+27,0,208180961,"Bury Your Dead",11,6
+28,0,93451531,"A Trick of the Light",11,6
+29,0,881082293,"Midnight's Children",12,10
+30,0,18409532,"Don't Let the Pigeon Drive the Bus!",13,24
+31,0,744412630,"Beezus and Ramona",14,24
+32,2,604328803,"Organic Chemistry",15,25
+33,0,909947112,"I Know Why the Caged Bird Sings",16,12
+34,0,46736233,Beloved,17,10
+35,3,330608463,"Brassbones and Rainbows",18,26
+36,0,1573181641,"A Very Strange Trip",21,11
+40,0,9781435148055,"The Physics Book",38,25

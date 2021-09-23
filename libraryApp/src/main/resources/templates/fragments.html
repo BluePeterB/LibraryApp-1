@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title>Library Maintenance App</title>  <!--This is the title shown by the browser -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+
+<nav th:fragment="header">
+     <ul class="nav">
+         <!-- The line below calls the CONTROLLER method that responds to 8080/library/book -->
+         <!-- and says this is not a call for a new loan. -->
+        <li class="nav-item"><a class="nav-link" href="/library/book?loan=false">All Books</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/patron">All Patrons</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/loan">All Loans</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/author?newBook=false">All Authors</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/genre?newBook=false">All Genres</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/book?loan=true">New Loan</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/loan?loanR=true">Loan Return</a></li>
+         <li class="nav-item"><a class="nav-link" href="/library/author?newBook=true">Add a Book</a></li>
+         <li class="nav-item"><a class="nav-link" href="/library/newPatron">Add a Patron</a></li>
+    </ul>
+    <h1 th:text="${title}">This gets replaced by controller</h1>
+</nav>
+
+
+
+</body>
+</html>

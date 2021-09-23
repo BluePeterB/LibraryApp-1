@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+<p style="font-size: 1.5em;">You are about to register a new loan as follows:</p>
+
+<form action="/library/newLoan" method="post">  <!-- when user hits submit, post request sent to the
+                                            controller method which responds to the path library.newLoan
+                                            that is to PostMapping("newLoan")-->
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Book Title</th>
+      <th>Patron First Name</th>
+      <th>Patron Last Name</th>
+      <th>Confirm</th>
+      <th>Cancel</th>
+    </tr>
+    </thead>
+    <tr>
+      <th th:text="${theBook.title}"></th>
+      <th th:text="${thePatron.firstName}" ></th>
+      <th th:text="${thePatron.lastName}"></th>
+      <th><input type="radio"  name="confirmed" style="height:20px; width:40px;"
+                 th:value="true"  class="form-control" onchange="this.form.submit()"></th>
+      <th><input type="submit"  class="btn btn-warning" value="Cancel"></th>
+    </tr>
+  </table>
+  <!-- <p><input type="submit" value="Confirm" class="btn btn-success"></p> -->
+
+
+</form>
+</body>
+</html>

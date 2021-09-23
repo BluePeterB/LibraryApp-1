@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<nav>
+    <ul class="nav">
+        <li class="nav-item"><span class="nav-link" >Ordered By</span></li>
+        <li class="nav-item"><span class="nav-link" th:text="${sortType}"></span></li>
+        <li class="nav-item"><a class="nav-link" href="/library/loan?sort=title">Order By Title</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/loan?sort=patron">Order By Patron</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/loan?sort=dateOut">Order By Date Out</a></li>
+        <li class="nav-item"><a class="nav-link" href="/library/loan?sort=dateIn">Order By Date In</a></li>
+    </ul>
+</nav>
+
+<p th:text="${instruction}" style="font-size: 1.5em;">This gets replaced by controller</p>
+
+<form action="/library/loanReturn" method="post"> <!-- when user hits submit (or radio button/submit), a post request is sent to the
+                                            controller method which responds to the path library/loanReturn-->
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Loan Number</th>
+        <th>Book Title</th>
+        <th>Date Out</th>
+        <th>Date In</th>
+        <th>Patron Name</th>
+    </tr>
+    </thead>
+    <tr th:each="loan : ${#lists.sort(loans, orderBy)}">
+    <!-- <tr th:each="loan : ${loans}">  -->
+        <td th:text="${loan.loanId}"></td>
+        <td th:text="${loan.book.title}" ></td>
+        <td th:text="${loan.dateOut}"></td>
+        <td th:text="${loan.dateIn}"></td>
+        <td th:text="${loan.patron.fullName}"></td>
+        <!-- Below loanIdX is the variable posted back on submit and its value is loan.loanId -->
+        <td th:if= "${loanR && loan.dateIn == ''}"><input type="radio" style="height:15px; width:50px;" name="loanIdX" th:value="${loan.loanId}"
+                                    class="form-control" onchange="this.form.submit()"></td>
+    </tr>
+<!-- <td th:if= "${loan && book.available==0}"> -->
+</table>
+</form>
+</body>
+</html>

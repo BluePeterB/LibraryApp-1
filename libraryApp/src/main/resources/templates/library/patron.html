@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+<p th:text="${instruction}" style="font-size: 1.5em;">This gets replaced by controller</p>
+
+
+<form action="/library/patron" method="post">  <!-- when user hits submit, post request sent to the
+                                            controller method which responds to the path library/patron -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Patron ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+
+            <th th:if= "${loan}">Select</th>
+        </tr>
+        </thead>
+        <tr th:each="patron : ${#lists.sort(patrons, byLastName)}">
+            <!-- <tr th:each="patron : ${patrons}"> -->
+            <td th:text="${patron.patronId}"></td>
+            <td th:text="${patron.firstName}"></td>
+            <td th:text="${patron.lastName}"></td>
+            <td th:text="${patron.address}"></td>
+            <td th:text="${patron.phoneNum}"></td>
+            <td th:if= "${loan}"><input type="radio" style="height:15px; width:50px;" name="patronId"
+                                        th:value="${patron.patronId}"  class="form-control" onchange="this.form.submit()"></td>
+            <!-- <td th:if= "${(patron.patronId % 10 == 0) && loan}"><input type="submit" value="Confirm"
+                                                                          class="btn btn-success"></td>  -->
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">HEAD</head>
+<body class="container">
+
+<header th:replace="fragments :: header">HEADER</header>
+
+<p style="font-size: 1.5em;">Please confirm a Loan Return as follows:</p>
+
+<form action="/library/loan" method="post">  <!-- when user hits submit, post request sent to the
+                                            controller method which responds to the path library.loan
+                                            that is to PostMapping("loan")-->
+  <table class="table table-striped">
+    <thead>  <!--  (Book book, String dateIn,  String dateOut, Patron patron) -->
+    <tr>
+      <th>Book Title</th>
+      <th>Date Out</th>
+      <th>Patron</th>
+      <th>Confirm</th>
+      <th>Cancel</th>
+    </tr>
+    </thead>
+    <tr>
+      <th th:text="${thisLoan.book}"></th>
+      <th th:text="${thisLoan.dateOut}" ></th>
+      <th th:text="${thisLoan.patron}"></th>
+      <th><input type="radio"  name="loanIdX" style="height:20px; width:40px;"
+                 th:value="${thisLoan.loanId}"  class="form-control" onchange="this.form.submit()"></th>
+      <!-- The above line gives a radio button that sets loanIdX to the selected loan AND submits form. -->
+      <th><input type="submit"  name="loanIdX"  class="btn btn-warning" value= 0 style="color: transparent;"></th>
+      <!-- Above line gives square orange summit button with no visible text that sets loanIdX to zero. -->
+    </tr>
+  </table>
+  <!-- <p><input type="submit" value="Confirm" class="btn btn-success"></p> -->
+
+
+</form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<p th:text="${instruction}" style="font-size: 1.5em;">This gets replaced by controller</p>
+
+
+<form action="/library/newPatron" method="post"> <!-- when user hits submit (or radio button/submit), a post request is sent to the
+                                            controller method which responds to the path library/addPatron. -->
+
+
+  <div class="form-group">
+    <label>First Name
+    <input type="text" name="firstName" class="form-control">
+  </label>
+    <label>Last Name
+      <input type="text"  name="lastName"  class="form-control">
+    </label>
+    <label>Address
+      <input type="text" name="address" class="form-control">
+    </label>
+    <label>Phone Number
+      <input type="text"  name="phoneNum"  class="form-control">
+    </label>
+
+    <th><input type="submit" value="Add Patron" class="btn btn-success"></th>
+    <!-- <th><input type="submit"  name="authorIdX"  class="btn btn-warning" value= 0 style="color: transparent;">Enter Patron</th> -->
+  </div>
+
+
+
+
+</form>
+</body>
+</html>
